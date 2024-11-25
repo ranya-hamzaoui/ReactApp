@@ -17,7 +17,7 @@ function TablePost() {
     queryFn: async () => {
       const response = await AxiosInstance.get("/posts/1");
       return response.data.posts as Post[];
-    },
+    }
   });
   const { mutate, isPending } = useMutation({
     mutationFn: async ({ id }: { id: string }) => {

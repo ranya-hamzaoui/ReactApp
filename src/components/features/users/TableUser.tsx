@@ -5,6 +5,7 @@ import TableComponent from '../../ui/TableComponent';
 import { AxiosInstance } from '../../../lib/axios';
 import { Button } from 'react-bootstrap';
 import { TABLE_USER_HEAD } from '../../../constants/constants';
+import { Link } from 'react-router-dom';
 
 
 interface Props {
@@ -41,7 +42,7 @@ function TableUser({OnEdit} : Props) {
   }; 
   const renderPostRow = (user: any) => (
     <>
-      <td>{user.name}</td>
+      <td> <Link to={`/users/${"1"}`}>{user.name}</Link> </td>
       <td>{user.email}</td>
       <td className="d-flex justify-content-around">
         <Button variant="danger" onClick={() => handleDelete(user._id)}>
