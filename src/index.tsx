@@ -11,7 +11,15 @@ import { persistor, store } from './redux/store';
 import { PersistGate } from 'redux-persist/integration/react'
 
 const queryClient = new QueryClient();
-const router = createBrowserRouter(routes());
+const router = createBrowserRouter(routes(),{
+  future: {
+    v7_relativeSplatPath: true, // Enables relative paths in nested routes
+    v7_fetcherPersist: true,   // Retains fetcher state during navigation
+    v7_normalizeFormMethod: true, // Normalizes form methods (e.g., POST or GET)
+    v7_partialHydration: true, // Supports partial hydration for server-side rendering
+    v7_skipActionErrorRevalidation: true, // Prevents revalidation when action errors occur
+  },
+});
 const root = ReactDOM.createRoot((document.getElementById('root')!));
 
 root.render(
@@ -20,7 +28,7 @@ root.render(
    <PersistGate loading={"loading ...."} persistor={persistor}>
 
    <QueryClientProvider client={queryClient}>
-     <RouterProvider router={router} /> 
+     <RouterProvider router={router} future={{ v7_startTransition: true }} /> 
      <ToastContainer/>
     </QueryClientProvider>
     </PersistGate>
